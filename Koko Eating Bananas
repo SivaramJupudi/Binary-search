@@ -1,0 +1,25 @@
+import math
+
+def fun(arr,hours):
+    totalhrs=0
+    n=len(arr)
+    for i in range(n):
+        totalhrs+=math.ceil(arr[i]/hours)
+    return totalhrs
+
+def koko_eatingbananas(arr,h):
+    low=1
+    high=max(arr)
+    while(low<=high):
+        mid=(low+high)//2
+        mintime=fun(arr,mid)
+        if(mintime<=h):
+            high=mid-1
+        else:
+            low=mid+1
+    return low
+
+v = [7, 15, 6, 3]
+h = 8
+ans = koko_eatingbananas(v,h)
+print("Koko should eat at least", ans, "bananas/hr.")
