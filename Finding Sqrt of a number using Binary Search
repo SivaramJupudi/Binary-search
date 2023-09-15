@@ -1,0 +1,15 @@
+def finding_sqrt(n):
+    low=1
+    high=n
+    while(low<=high):
+        mid=(low+high)//2
+        val=mid*mid
+        if(val<=n):
+            low=mid+1
+        else:
+            high=mid-1
+    return high
+
+n = 28
+ans = finding_sqrt(n)
+print("The floor of square root of", n, "is:", ans)
