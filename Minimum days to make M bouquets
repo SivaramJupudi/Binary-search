@@ -1,0 +1,36 @@
+def possible(arr,day,m,k):
+    n=len(arr)
+    cnt=0
+    cntB=0
+    for i in range(n):
+        if(arr[i]<=day):
+            cnt+=1
+        else:
+            cntB+=(cnt//k)
+            cnt=0
+    cntB+=(cnt//k)
+    return cntB>=m
+
+def rosegarden(arr,m,k):
+    n=len(arr)
+    if(m*k>n):
+        return -1
+
+    low=min(arr)
+    high=max(arr)
+    while(low<=high):
+        mid=(low+high)//2
+        if(possible(arr,mid,m,k)):
+            high=mid-1
+        else:
+            low=mid+1
+    return low
+
+arr = [7, 7, 7, 7, 13, 11, 12, 7]
+k = 3
+m = 2
+ans = rosegarden(arr,m,k)
+if ans == -1:
+    print("We cannot make m bouquets.")
+else:
+    print("We can make bouquets on day", ans)
