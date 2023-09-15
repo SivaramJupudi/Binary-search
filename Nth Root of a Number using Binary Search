@@ -1,0 +1,30 @@
+def fun(n,mid,m):
+    ans=1
+    for i in range(1,n+1):
+        ans*=mid
+        if(ans>m):
+            return 2
+    if(ans==m):
+        return 1
+    else:
+        return 0
+
+def NthRoot(n, m):
+    low=1
+    high=n
+    while(low<=high):
+        mid=(low+high)//2
+        midN=fun(n,mid,m)
+        if(midN==1):
+            return mid
+        elif(midN<m):
+            low=mid+1
+        else:
+            high=mid-1
+
+    return -1
+
+n = 3
+m = 27
+ans = NthRoot(n, m)
+print("The answer is:", ans)
