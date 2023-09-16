@@ -1,0 +1,29 @@
+def fun(arr,capacity):
+    days=1
+    n=len(arr)
+    load=0
+    for i in range(n):
+        if(load+arr[i]>capacity):
+            days+=1
+            load=arr[i]
+        else:
+            load+=arr[i]
+    return days
+
+
+def leastWeightCapacity(arr,days):
+    low=max(arr)
+    high=sum(arr)
+    while(low<=high):
+        mid=(low+high)//2
+        noDays=fun(arr,mid)
+        if(noDays<=days):
+            high=mid-1
+        else:
+            low=mid+1
+    return low
+
+weights = [5, 4, 5, 2, 3, 4, 5, 6]
+d = 5
+ans = leastWeightCapacity(weights, d)
+print("The minimum capacity should be:", ans)
