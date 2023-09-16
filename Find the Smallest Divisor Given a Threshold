@@ -1,0 +1,32 @@
+import math
+def fun(arr,mid):
+    n=len(arr)
+    sum=0
+    for i in range(n):
+        sum+=math.ceil(arr[i]/mid)
+
+    return sum
+
+
+
+
+def smallest_divisor(arr,limit):
+    n=len(arr)
+    low=1
+    high=max(arr)
+    if(n>limit):
+        return -1
+    while(low<=high):
+        mid=(low+high)//2
+        if fun(arr,mid)<=limit:
+            high=mid-1
+        else:
+            low=mid+1
+    return low
+
+arr = [1, 2, 3, 4, 5]
+limit = 8
+ans = smallest_divisor(arr,limit)
+print("The minimum divisor is:", ans)
+
+
