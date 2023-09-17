@@ -1,0 +1,30 @@
+def cows_possible(arr,dist,cows):
+    n=len(arr)
+    cntcows=1
+    last=arr[0]
+    for i in range(n):
+        if (arr[i]-last>=dist):
+            cntcows+=1
+            last=arr[i]
+        if(cntcows>=cows):
+            return True
+    return False
+
+
+def aggressive_cows(arr,cows):
+    n=len(arr)
+    arr.sort()
+    low=1
+    high=max(arr)
+    while(low<=high):
+        mid=(low+high)//2
+        if cows_possible(arr,mid,cows):
+            low=mid+1
+        else:
+            high=mid-1
+    return high
+
+stalls = [0, 3, 4, 7, 10, 9]
+k = 4
+ans = aggressive_cows(stalls, k)
+print("The maximum possible minimum distance is:", ans)
