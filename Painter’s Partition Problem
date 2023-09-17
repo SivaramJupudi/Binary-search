@@ -1,0 +1,29 @@
+def fun(arr,time):
+    n=len(arr)
+    time_spent=0
+    painter=1
+    for i in range(n):
+        if(arr[i]+time_spent<=time):
+            time_spent+=arr[i]
+        else:
+            painter+=1
+            time_spent=arr[i]
+    return painter
+
+
+def findLargestMinDistance(arr, k):
+    low=max(arr)
+    high=sum(arr)
+    while(low<=high):
+        mid=(low+high)//2
+        painters=fun(arr,mid)
+        if(painters>k):
+            low=mid+1
+        else:
+            high=mid-1
+    return low
+
+boards = [10, 20, 30, 40]
+k = 2
+ans = findLargestMinDistance(boards, k)
+print("The answer is:", ans)
