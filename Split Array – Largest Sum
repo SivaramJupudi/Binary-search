@@ -1,0 +1,30 @@
+def fun(arr,mid):
+    n=len(arr)
+    sum=0
+    subarr=1
+    for i in range(n):
+        if(sum+arr[i]<=mid):
+            sum+=arr[i]
+        else:
+            subarr+=1
+            sum=arr[i]
+    return subarr
+
+
+
+def largestSubarraySumMinimized(arr, k):
+    low=max(arr)
+    high=sum(arr)
+    while(low<=high):
+        mid=(low+high)//2
+        cntsubarr=fun(arr,mid)
+        if(cntsubarr>k):
+            low=mid+1
+        else:
+            high=mid-1
+    return low
+
+a = [10, 20, 30, 40]
+k = 2
+ans = largestSubarraySumMinimized(a, k)
+print("The answer is:", ans)
