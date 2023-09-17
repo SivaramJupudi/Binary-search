@@ -1,0 +1,36 @@
+def fun(arr,pages):
+    n=len(arr)
+    students=1
+    pagestudent=0
+    for i in range(n):
+        if(arr[i]+pagestudent<=pages):
+            pagestudent+=arr[i]
+        else:
+            students+=1
+            pagestudent=arr[i]
+    return students
+
+
+
+def findPages(arr, n, m):
+
+    if(n<m):
+        return -1
+
+    low=max(arr)
+    high=sum(arr)
+    while(low<=high):
+        mid=(low+high)//2
+        cntstu=fun(arr,mid)
+        if(cntstu>m):
+            low=mid+1
+        else:
+            high=mid-1
+    return low
+
+
+arr = [25, 46, 28, 49, 24]
+n = 5
+m = 4
+ans = findPages(arr, n, m)
+print("The answer is:", ans)
