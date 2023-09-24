@@ -1,0 +1,33 @@
+def fun(mat,n,m,col):
+    maxele=-1
+    index=-1
+    for i in range(n):
+        if(mat[i][col]>maxele):
+            maxele=mat[i][col]
+            index=i
+    return index
+        
+
+
+def findPeakGrid(mat: [[int]]) -> [int]:
+    # Write your code here.
+    pass
+    n=len(mat)
+    m=len(mat[0])
+    low=0
+    high=m-1
+    while(low<=high):
+        mid=(low+high)//2
+        maxrowindex=fun(mat,n,m,mid)
+        left=mat[maxrowindex][mid-1] if mid-1>=0 else -1
+        right=mat[maxrowindex][mid+1] if mid+1<m else -1
+        if(mat[maxrowindex][mid]>left and mat[maxrowindex][mid]>right):
+            return (maxrowindex, mid)
+
+        elif(mat[maxrowindex][mid]<left):
+            high=mid-1
+        else:
+            low=mid+1
+    return (-1,-1)
+
+
