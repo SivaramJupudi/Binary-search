@@ -1,0 +1,30 @@
+def fun(mat,mid):
+    n=len(mat)
+    l=0
+    h=n-1
+    while(l<=h):
+        md=(l+h)//2
+        if(mat[md]<=mid):
+            l=md+1
+        else:
+            h=md-1
+    return l
+
+
+
+
+def median(matrix: [[int]], m: int, n: int) -> int:
+    # Write your code here.
+    pass
+    low=0
+    high=10**9
+    while(low<=high):
+        mid=(low+high)//2
+        cnt=0
+        for i in range(m):
+            cnt+=fun(matrix[i],mid)
+        if cnt<=((m*n)//2):
+            low=mid+1
+        else:
+            high=mid-1
+    return low
